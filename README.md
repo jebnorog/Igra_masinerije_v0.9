@@ -1,0 +1,2 @@
+# Igra_masinerije_v0.9
+AKO NECE DA RADI PRVO KLIKNI START, KONJU 
