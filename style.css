@@ -291,19 +291,97 @@ body {
   text-shadow: 0 0 6px #b36fff;
 }
 
-/* --- CHEAT MODAL, POPUP, EXIT, PRAVILA, MMF --- */
-#cheat-modal { position: absolute; top: 0; left: 0; width: 33%; height: 100%; background-color: rgba(0,0,0,0.95); z-index: 1200; }
-#cheat-modal.hidden { opacity: 0; pointer-events: none; }
-.cheat-content { display: flex; flex-direction: column; align-items: center; width: 90%; }
-.cheat-text { font-size: 18px; margin-bottom: 10px; text-align: center; }
-#cheat-input { width: 80%; padding: 8px; border-radius: 4px; border: none; margin-bottom: 15px; font-size: 16px; }
-.cheat-green, .cheat-red, .cheat-exit { border-radius: 4px; padding: 10px 20px; margin: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+/* --- CHEAT MODAL --- */
+#cheat-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;             /* trećina ekrana */
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1200;
+  overflow: hidden;       /* sprečava da dugmad iskaču */
+}
+
+#cheat-modal.hidden { 
+  opacity: 0; 
+  pointer-events: none; 
+}
+
+/* cheat sadržaj */
+.cheat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;           /* zauzima sav prostor */
+  overflow-y: auto;       /* scroll za duži tekst */
+}
+
+.cheat-text {
+  font-size: 16px;        /* manji font */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#cheat-input {
+  width: 90%;
+  padding: 6px;
+  border-radius: 4px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 14px;        /* manji font */
+}
+
+/* dugmad */
+.cheat-green, .cheat-red, .cheat-exit {
+  border-radius: 4px;
+  padding: 6px 10px;      /* manja visina */
+  margin: 5px;
+  cursor: pointer;
+  font-size: 14px;        /* manji font */
+  font-weight: bold;
+}
+
 .cheat-green { background-color: #070; color: #fff; }
-.cheat-red { background-color: #900; color: #fff; }
-.cheat-exit { background-color: #555; color: #fff; }
-#cheat-popup { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255,255,255,0.1); backdrop-filter: blur(4px); padding: 20px; border: 1px solid #fff; border-radius: 8px; color: #fff; font-size: 20px; z-index: 2000; }
+.cheat-red   { background-color: #900; color: #fff; }
+.cheat-exit  { background-color: #555; color: #fff; }
+
+/* cheat popup */
+#cheat-popup {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+  padding: 15px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;       /* smanjen font */
+  z-index: 2000;
+}
+
 #cheat-popup.hidden { display: none; }
-#cheat-popup-box button { margin-top: 10px; background-color: #555; color: #fff; border: none; border-radius: 4px; padding: 6px 14px; cursor: pointer; }
+
+#cheat-popup-box button {
+  margin-top: 5px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;      /* manja visina */
+  cursor: pointer;
+  font-size: 14px;        /* manji font */
+}
+
 
 /* --- EXIT MODAL --- */
 #exit-modal {
@@ -329,9 +407,34 @@ body {
 #leave-btn { background-color: #900; }
 
 /* --- PRAVILA I LAMPICE --- */
-#pravila1-modal, #pravila2-modal, #pravila3-modal { position: fixed; top: 0; width: 33%; height: 100%; background-color: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 1400; transition: opacity 0.2s ease, transform 0.2s ease; }
-#pravila1-modal { left: 0; } #pravila2-modal { left: 33%; } #pravila3-modal { left: 67%; }
-#pravila1-modal.hidden, #pravila2-modal.hidden, #pravila3-modal.hidden { opacity: 0; pointer-events: none; transform: scale(0.9); }
+#pravila1-modal, #pravila2-modal, #pravila3-modal {
+  position: fixed;
+  top: 0;
+  width: 33%;           /* ostaje leva/centar/desna trećina */
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  display: flex;
+  flex-direction: column; /* dodaj kolonu da može scroll i dugmad dole */
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1400;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  overflow: hidden;     /* sprečava da dugmad iskaču */
+}
+
+#pravila1-modal { left: 0; }
+#pravila2-modal { left: 33%; }
+#pravila3-modal { left: 67%; }
+
+#pravila1-modal.hidden, #pravila2-modal.hidden, #pravila3-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+/* Lampica ostaje ista */
 .lampica {
   position: absolute;
   top: 5px;
@@ -344,6 +447,45 @@ body {
   box-shadow: 0 0 8px 2px rgba(0,255,0,0.6);
   z-index: 2;
 }
+
+/* Dugmad unutar pravila (ako ih ima) */
+#pravila1-modal .action-btn,
+#pravila2-modal .action-btn,
+#pravila3-modal .action-btn {
+  padding: 6px 10px;       /* manja visina i širina */
+  font-size: 14px;          /* manji font */
+  margin-top: auto;         /* dugmad na dnu */
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  background-color: #0a0;
+}
+
+#pravila1-modal .exit-btn,
+#pravila2-modal .exit-btn,
+#pravila3-modal .exit-btn {
+  padding: 6px 10px;
+  font-size: 14px;
+  margin-top: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  background-color: #555;
+}
+
+/* Tekst unutar pravila, da se scrolluje ako je duži */
+#pravila1-modal .card-text,
+#pravila2-modal .card-text,
+#pravila3-modal .card-text {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+
 
 /* --- POPRAVKA Z-INDEXA ZA KARTICE --- */
 #center-panel, .card-grid, .card {
