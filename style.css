@@ -459,8 +459,8 @@ body {
 #pravila1-modal .action-btn,
 #pravila2-modal .action-btn,
 #pravila3-modal .action-btn {
-  padding: 6px 10px;       /* manja visina i širina */
-  font-size: 14px;          /* manji font */
+  padding: 6px 20px;       /* manja visina i širina */
+  font-size: 20px;          /* manji font */
   margin-top: auto;         /* dugmad na dnu */
   border-radius: 4px;
   cursor: pointer;
@@ -488,8 +488,8 @@ body {
 #pravila3-modal .card-text {
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 10px;
-  font-size: 16px;
+  margin-bottom: 5px;
+  font-size: 10px;
   line-height: 1.3em;
 }
 
