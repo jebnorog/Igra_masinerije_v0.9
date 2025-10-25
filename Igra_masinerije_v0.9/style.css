@@ -1,0 +1,649 @@
+body {
+  margin: 0;
+  background-color: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#game-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+#left-panel, #center-panel, #right-panel {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.panel {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+#left-panel {
+  width: 33%;
+  background-color: #222;
+}
+
+#center-panel {
+  width: 34%;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  flex-shrink: 0;
+}
+
+#right-panel {
+  width: 33%;
+  background-color: #222;
+}
+
+/* --- KARTICE --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  height: 100%;
+}
+.card {
+  background-color: #333;
+  border: 1px solid #fff;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.card:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+/* --- GORNJA DUGMAD --- */
+#top-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  width: 100%;
+}
+#start-btn, #credits-btn {
+  padding: 12px 35px;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#start-btn { background-color: #0a0; color: #fff; width: 150px; }
+#credits-btn { background-color: #444030; color: #fff; width: 150px; }
+
+/* --- STATUS KVADRATI --- */
+#status-boxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 15px;
+}
+.status-box {
+  width: 150px;
+  height: 150px;
+  background-color: #222;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4em;
+}
+
+/* --- MORAL --- */
+#moral-container { margin-top: 25px; width: 340px; }
+.moral-header { display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 5px; padding: 0 5px; }
+.moral-bar { width: 100%; height: 16px; background-color: #111; border: 1px solid #fff; border-radius: 8px; overflow: hidden; }
+#moral-fill { height: 100%; width: 100%; background-color: #0f0; transition: width 0.3s, background-color 0.3s; }
+
+/* --- ZBIDELJ --- */
+#zbidelj-container { margin-top: 25px; width: 340px; }
+.zbidelj-header { display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 5px; padding: 0 5px; }
+.zbidelj-bar { width: 100%; height: 16px; background-color: #111; border: 1px solid #fff; border-radius: 8px; overflow: hidden; }
+#zbidelj-fill { height: 100%; width: 0%; background-color: #0f0; transition: width 0.3s, background-color 0.3s; }
+
+/* --- CACAD / BLOKADERI SKALE --- */
+#cacad-container, #blokaderi-container {
+  margin-top: 25px;
+  width: 340px;
+}
+.scale-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding: 0 5px;
+}
+.scale-bar {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background-color: #111;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+#cacad-fill, #blokaderi-fill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 0%;
+  background-color: #0f0;
+  transform-origin: center;
+  transition: width 0.3s, background-color 0.3s;
+}
+@keyframes soft-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* --- TROBOJKA --- */
+#flag-container {
+  margin-top: 45px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: "Roboto Condensed", Arial, sans-serif;
+  font-weight: bold;
+  color: #111;
+  text-align: center;
+}
+.flag-row {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.flag-row.red { background-color: #f00; letter-spacing: 8px; }
+.flag-row.blue { background-color: #00f; }
+.flag-row.white { background-color: #fff; }
+
+/* --- CHEAT I EXIT LINIJE --- */
+#cheat-line, #exit-line {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transform: translateX(20px);
+}
+#cheat-btn, #exit-btn {
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 35px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 150px;
+}
+#cheat-btn { background-color: #063; color: #fff; }
+#exit-btn { background-color: #900; color: #fff; }
+
+/* --- DONJI DEO (JEDNOROG + SAT) --- */
+#bottom-center {
+  position: absolute;
+  bottom: 87px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+#jednorog {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px 2px rgba(255,0,0,0.4);
+}
+#timer { font-size: 18px; text-align: center; }
+
+/* --- MODALI ZAJEDNIČKO --- */
+#card-modal, #credits-modal, #zbidelj-modal,
+#cacad-minus-modal, #cacad-plus-modal,
+#blok-minus-modal, #blok-plus-modal,
+#moral-modal, #mmf-night-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.hidden { opacity: 0; pointer-events: none; transform: scale(0.9); }
+
+.card-content { display: flex; width: 100%; height: 100%; }
+.card-left, .card-right { width: 50%; height: 100%; }
+.card-left img { width: 100%; height: 100%; object-fit: cover; }
+.card-right {
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.card-buttons { display: flex; flex-direction: column; gap: 10px; }
+.action-btn, .exit-btn {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+}
+.action-btn { background-color: #0a0; }
+.exit-btn { background-color: #555; }
+
+/* --- BLOKADERI MODALI (posebna nijansa) --- */
+#blok-minus-modal .card-right,
+#blok-plus-modal .card-right {
+  background-color: #2b1b2b; /* tamno-ljubičasti ton */
+}
+#blok-minus-modal .card-text,
+#blok-plus-modal .card-text {
+  color: #d3a8ff;
+  font-size: 22px;
+  text-shadow: 0 0 6px #b36fff;
+}
+
+/* --- CHEAT MODAL, POPUP, EXIT, PRAVILA, MMF --- */
+#cheat-modal { position: absolute; top: 0; left: 0; width: 33%; height: 100%; background-color: rgba(0,0,0,0.95); z-index: 1200; }
+#cheat-modal.hidden { opacity: 0; pointer-events: none; }
+.cheat-content { display: flex; flex-direction: column; align-items: center; width: 90%; }
+.cheat-text { font-size: 18px; margin-bottom: 10px; text-align: center; }
+#cheat-input { width: 80%; padding: 8px; border-radius: 4px; border: none; margin-bottom: 15px; font-size: 16px; }
+.cheat-green, .cheat-red, .cheat-exit { border-radius: 4px; padding: 10px 20px; margin: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+.cheat-green { background-color: #070; color: #fff; }
+.cheat-red { background-color: #900; color: #fff; }
+.cheat-exit { background-color: #555; color: #fff; }
+#cheat-popup { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255,255,255,0.1); backdrop-filter: blur(4px); padding: 20px; border: 1px solid #fff; border-radius: 8px; color: #fff; font-size: 20px; z-index: 2000; }
+#cheat-popup.hidden { display: none; }
+#cheat-popup-box button { margin-top: 10px; background-color: #555; color: #fff; border: none; border-radius: 4px; padding: 6px 14px; cursor: pointer; }
+
+/* --- EXIT MODAL --- */
+#exit-modal {
+  position: absolute;
+  top: 0;
+  left: 33%;
+  width: 34%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1300;
+  transition: opacity 0.2s ease;
+}
+#exit-modal.hidden { opacity: 0; pointer-events: none; }
+.exit-content { width: 90%; height: 90%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.exit-image { width: 100%; height: 75%; object-fit: cover; }
+.exit-buttons { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px; }
+#stay-btn, #leave-btn { width: 150px; padding: 12px 35px; border-radius: 4px; border: none; font-weight: bold; cursor: pointer; color: #fff; font-size: 16px; }
+#stay-btn { background-color: #0a0; }
+#leave-btn { background-color: #900; }
+
+/* --- PRAVILA I LAMPICE --- */
+#pravila1-modal, #pravila2-modal, #pravila3-modal { position: fixed; top: 0; width: 33%; height: 100%; background-color: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; z-index: 1400; transition: opacity 0.2s ease, transform 0.2s ease; }
+#pravila1-modal { left: 0; } #pravila2-modal { left: 33%; } #pravila3-modal { left: 67%; }
+#pravila1-modal.hidden, #pravila2-modal.hidden, #pravila3-modal.hidden { opacity: 0; pointer-events: none; transform: scale(0.9); }
+.lampica {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #0f0;
+  box-shadow: 0 0 8px 2px rgba(0,255,0,0.6);
+  z-index: 2;
+}
+
+/* --- POPRAVKA Z-INDEXA ZA KARTICE --- */
+#center-panel, .card-grid, .card {
+  position: relative;
+  z-index: 10; /* kartice iznad leve ploče */
+}
+#left-panel {
+  position: relative;
+  z-index: 1; /* leva ploča ispod */
+}
+
+/* --- NOVO: MODAL "LOPOVE NE KRADI" --- */
+#lopov-modal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(60, 0, 0, 0.95);
+  border: 3px solid red;
+  color: #fff;
+  padding: 25px 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  z-index: 3000;
+  animation: lopov-blink 1.2s ease-in-out infinite;
+}
+#lopov-modal.hidden { display: none; }
+
+#lopov-ok {
+  margin-top: 15px;
+  padding: 10px 25px;
+  background-color: #700;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+#lopov-ok:hover {
+  background-color: #a00;
+}
+
+/* --- ANIMACIJA BLINKA --- */
+@keyframes lopov-blink {
+  0%, 100% { box-shadow: 0 0 20px 5px red; }
+  50% { box-shadow: 0 0 5px 2px #800; }
+}
+
+#night-event-modal,
+#konj-podmazan-modal,
+#konj-nije-podmazan-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1700;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#night-event-modal.hidden,
+#konj-podmazan-modal.hidden,
+#konj-nije-podmazan-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+#marica-range-box input[type="range"] {
+  width: 100%;
+  accent-color: #0a0;
+}
+#marica-value {
+  font-size: 18px;
+  color: #0f0;
+  text-shadow: 0 0 5px #070;
+  font-weight: bold;
+}
+
+#kradja-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1800;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#kradja-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+#kockanje-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1900;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#kockanje-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+#sendvicarijum-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0,0,0,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; /* veći od card-modal i ostalih */
+  transition: opacity 0.3s ease;
+}
+#sendvicarijum-modal.hidden {
+  display: none;
+  opacity: 0;
+}
+
+#reket-modal {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#reket-modal.hidden {
+  display: none;
+}
+
+/* --- MMF NOĆNI MODAL --- */
+#mmf-night-modal {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1600;
+}
+#mmf-night-modal.hidden { opacity: 0; pointer-events: none; }
+/* === LANDSCAPE MOBILE FIX - CENTRALNI TAB BEZ SEČENJA === */
+@media (orientation: landscape) and (max-width: 900px) {
+/* === FINALNI LANDSCAPE BLOK ZA TELEFON === */
+@media (orientation: landscape) and (max-width: 900px) {
+
+  /* Glavni panel */
+ /* === FINALNI LANDSCAPE BLOK ZA TELEFON === */
+@media (orientation: landscape) and (max-width: 900px) {
+
+  /* Glavni panel */
+  #center-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100dvh;
+    overflow-y: auto;
+    padding: 1vh 2vw;
+    box-sizing: border-box;
+    transform: none !important;
+  }
+
+  /* Dugmad START / CREDITS */
+  #top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 4vw;
+    margin-top: 1vh;
+  }
+
+  #top-buttons button {
+    font-size: 2.2vh !important;
+    padding: 0.8vh 2.8vw !important;
+    border-radius: 10px !important;
+  }
+
+    /* === KASA i DAN tačno ispod START i CREDITS (širina dugmadi) === */
+  #status-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4vw;
+    width: auto;
+    margin-top: 0.8vh;
+  }
+
+  #status-boxes .status-box {
+    /* Širina automatski prati širinu dugmeta iznad */
+    width: calc( var(--button-width, 140px) );
+    height: calc( var(--button-width, 140px) ); /* kvadrat */
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    font-size: 2.8vh !important;
+    font-weight: 700 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.3;
+  }
+
+  /* Definišemo istu širinu kao za dugmad */
+  #top-buttons button {
+    --button-width: 22vw;
+    width: var(--button-width);
+    font-size: 2.2vh !important;
+    padding: 0.8vh 0 !important;
+    border-radius: 10px !important;
+  }
+
+  #status-boxes div {
+    text-align: center;
+  }
+
+
+
+  /* === Skale (Korupcija, Zbidelj, Cacad, Blokaderi) === */
+  #moral-container,
+  #zbidelj-container,
+  #cacad-container,
+  #blokaderi-container {
+    width: 80%;
+    height: 5vh;
+    margin: 0.5vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .moral-header span,
+  .zbidelj-header span,
+  .scale-header span {
+    font-size: 2vh !important;
+    font-weight: 600 !important;
+  }
+
+  .moral-bar,
+  .zbidelj-bar,
+  .scale-bar {
+    width: 100%;
+    height: 1.2vh;
+    border: none !important;
+    border-radius: 4px;
+    background-color: #222;
+  }
+
+  /* === Trobojka i Jednorog === */
+  #flag-container {
+    display: none !important;
+  }
+
+  #jednorog {
+    display: none !important;
+  }
+
+  /* === Dugmad Cheat i Izlaz === */
+  #cheat-btn,
+  #exit-btn {
+    font-size: 2vh !important;
+    padding: 0.7vh 1.2vh !important;
+    border-radius: 6px;
+  }
+
+  #cheat-line,
+  #exit-line {
+    margin-top: 0.6vh !important;
+  }
+
+  /* === Timer ispod svega === */
+  #bottom-center {
+    position: relative;
+    margin-top: 1vh;
+    text-align: center;
+  }
+
+  #timer {
+    font-size: 1.8vh !important;
+    margin-top: 0.3vh;
+    color: #fff;
+  }
+}

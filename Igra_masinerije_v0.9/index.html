@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Igra_Masinerije_v0.9</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- LEVI PANEL -->
+    <div id="left-panel" class="panel">
+      <div class="card-grid">
+        <div class="card" data-img="kar1.jpg"></div>
+        <div class="card" data-img="kar2.jpg"></div>
+        <div class="card" data-img="kar3.jpg"></div>
+        <div class="card" data-img="kar4.jpg"></div>
+        <div class="card" data-img="kar5.jpg"></div>
+        <div class="card" data-img="kar6.jpg"></div>
+      </div>
+    </div>
+
+    <!-- SREDNJI PANEL -->
+    <div id="center-panel" class="panel">
+      <div id="top-buttons">
+        <button id="start-btn">START</button>
+        <button id="credits-btn">CREDITS</button>
+      </div>
+
+      <!-- STATUS KVADRATI -->
+      <div id="status-boxes">
+        <div class="status-box" id="money-box">
+          <div>Kasa:</div>
+          <div id="money-value">0€</div>
+        </div>
+        <div class="status-box" id="day-box">
+          <div>Dan br: <span id="day-number">1</span></div>
+          <div id="day-name">Pon</div>
+          <div id="day-period">dan</div>
+        </div>
+      </div>
+
+      <!-- MORAL -->
+      <div id="moral-container">
+        <div class="moral-header">
+          <span class="moral-label">Korupcija</span>
+          <span id="moral-value">100</span>
+        </div>
+        <div class="moral-bar">
+          <div id="moral-fill"></div>
+        </div>
+      </div>
+
+      <!-- ZBIDELJ -->
+      <div id="zbidelj-container">
+        <div class="zbidelj-header">
+          <span class="zbidelj-label">Zbidelj</span>
+          <span id="zbidelj-value">0</span>
+        </div>
+        <div class="zbidelj-bar">
+          <div id="zbidelj-fill"></div>
+        </div>
+      </div>
+
+      <!-- CACAD -->
+      <div id="cacad-container">
+        <div class="scale-header">
+          <span class="scale-label">Cacad</span>
+          <span id="cacad-value">0</span>
+        </div>
+        <div class="scale-bar">
+          <div id="cacad-fill"></div>
+        </div>
+      </div>
+
+      <!-- BLOKADERI -->
+      <div id="blokaderi-container">
+        <div class="scale-header">
+          <span class="scale-label">Blokaderi</span>
+          <span id="blokaderi-value">0</span>
+        </div>
+        <div class="scale-bar">
+          <div id="blokaderi-fill"></div>
+        </div>
+      </div>
+
+      <!-- TROBOJKA TEKST -->
+      <div id="flag-container">
+        <div class="flag-row red">P U M P A J !</div>
+        <div class="flag-row blue">IGRA MASINERIJA</div>
+        <div class="flag-row white">VRATI KONJU GLAVU MAJMUNE</div>
+      </div>
+
+      <!-- CHEAT DUGME -->
+      <div id="cheat-line">
+        <button id="cheat-btn">CHEAT</button>
+      </div>
+
+      <!-- IZLAZ DUGME -->
+      <div id="exit-line">
+        <button id="exit-btn">IZLAZ</button>
+      </div>
+
+      <!-- DONJI DEO (JEDNOROG + SAT) -->
+      <div id="bottom-center">
+        <div id="unicorn-timer">
+          <img src="assets/jednorog.jpg" id="jednorog" alt="Jednorog">
+          <div id="timer">00:00</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESNI PANEL -->
+    <div id="right-panel" class="panel">
+      <div class="card-grid">
+        <div class="card" data-img="kar7.jpg"></div>
+        <div class="card" data-img="kar8.jpg"></div>
+        <div class="card" data-img="kar9.jpg"></div>
+        <div class="card" data-img="kar10.jpg"></div>
+        <div class="card" data-img="kar11.jpg"></div>
+        <div class="card" data-img="kar12.jpg"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KARTICA PROZOR -->
+  <div id="card-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <img id="modal-img" src="" alt="">
+      </div>
+      <div class="card-right">
+        <div class="card-text" id="card-text">Ovde ide tekst kartice.</div>
+        <div class="card-buttons">
+          <button class="action-btn">Opcija 1</button>
+          <button class="action-btn">Opcija 2</button>
+          <button class="action-btn">Opcija 3</button>
+          <button class="exit-btn" id="close-card">IZLAZ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDITS PROZOR -->
+  <div id="credits-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <img src="assets/jednorog.jpg" alt="Jednorog">
+      </div>
+      <div class="card-right">
+        <div class="card-text">
+  Mirko napravio. ¯\_(ツ)_/¯<br>
+  Masinci u blokadi nemaju veze sa ovim projektom, posluzio sam se fontom. Hvala im &lt;3<br>
+  Svaka slicnost sa stvarnim ljudima i dogadjajima je slucajna i/ili plod iskljucivo vase maste.<br>
+  Jednorozi stvarno postoje.<br>
+  Sve sto treba je da promisljenim potezima balansiras moral cacadi i blokadera kao i korupciju da ne zakucaju u razlicite game-over scenarije, nakupis milijardu i proslavis sa bratom kog mama vise voli. Imas 100 dana.<br>
+  Isprobaj svaki kraj, veruj mi.<br>
+  Ako hoces lozinku za cheat: <a class="link-blue" href="https://www.facebook.com/atomx85" target="_blank" rel="noopener noreferrer">OVDE</a> ili <a class="link-red" href="https://www.instagram.com/prepun.k/" target="_blank" rel="noopener noreferrer">OVDE</a> mi posalji snimak ekrana ili fotografiju da si dao bar 200 kinti u dobrotvorne svrhe. Sms za bolseno dete, donacija narodnoj kuhinji, studentima, deci, lokalnom centru za psiholosku pomoc... Ne zaboravi da sakrijes svoje licne podatke.<br>
+  A ako ne znas sta ces s lovom evo i moj <a class="link-blue" href="https://www.patreon.com/c/JeBnorog" target="_blank" rel="noopener noreferrer">PATREON</a>.<br>
+  I ne gubi puno vremena ovde, treba pumpati!
+</div>
+        <div class="card-buttons">
+          <button class="action-btn" id="rules-btn">PRAVILA</button>
+          <button class="exit-btn" id="close-credits">IZLAZ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZBIDELJ MODAL -->
+  <div id="zbidelj-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <img src="assets/zbideljsuv.jpg" alt="Zbidelj prepunjen">
+      </div>
+      <div class="card-right">
+        <div class="card-text">Zbidelj je prepunjen! Sistem se resetuje...</div>
+        <div class="card-buttons">
+          <button class="exit-btn" id="zbidelj-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHEAT MODAL -->
+<div id="cheat-modal" class="hidden">
+  <div class="cheat-content">
+    <!-- PRVA FAZA: UNOS ŠIFRE -->
+    <div id="cheat-stage1">
+      <div class="cheat-text">Unesi šifru: (Pogledaj u Credits)</div>
+      <input type="password" id="cheat-input" placeholder="•••••••••">
+      <button id="cheat-ok" class="cheat-green">OK</button>
+      <button id="cheat-exit" class="cheat-exit">IZLAZ</button>
+    </div>
+
+    <!-- DRUGA FAZA: CHEAT OPCIJE -->
+    <div id="cheat-stage2" class="hidden">
+      <div class="cheat-buttons">
+        <div class="cheat-row">
+          <button class="cheat-green" id="moral-minus">moral-</button>
+          <button class="cheat-green" id="moral-plus">moral+</button>
+        </div>
+        <div class="cheat-row">
+          <button class="cheat-green" id="cacad-minus">cacad-</button>
+          <button class="cheat-green" id="cacad-plus">cacad+</button>
+        </div>
+        <div class="cheat-row">
+          <button class="cheat-green" id="blok-minus">blokaderi-</button>
+          <button class="cheat-green" id="blok-plus">blokaderi+</button>
+        </div>
+        <div class="cheat-row">
+          <button class="cheat-red" id="period-plus">period+</button>
+          <button class="cheat-red" id="kasa-plus">kasa+</button>
+        </div>
+      </div>
+      <button id="cheat-close2" class="cheat-exit">IZLAZ</button>
+    </div>
+  </div>
+
+  <!-- MINI POPUP -->
+  <div id="cheat-popup" class="hidden">
+    <div id="cheat-popup-box">
+      LOPOVE NE KRADI
+      <button id="popup-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+    <!-- MINI POPUP -->
+    <div id="cheat-popup" class="hidden">
+      <div id="cheat-popup-box">
+        LOPOVE NE KRADI
+        <button id="popup-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXIT MODAL -->
+  <div id="exit-modal" class="hidden">
+    <div class="exit-content">
+      <img src="assets/exit.jpg" alt="Izlaz" class="exit-image">
+      <div class="exit-buttons">
+        <button id="stay-btn">NE ODUSTAJEM</button>
+        <button id="leave-btn">IDEM DA PUMPAM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRAVILA MODALI -->
+  <div id="pravila1-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <div class="card-text">Pravila bas i nema. Ni sablona. Igraj na nacin na koji ti zelis da bi dobio zeljeni kraj. Svakog desetog dana ce te sigurno strefiti afera. Subotom i nedeljom budi spreman za kontramintinge i naplate i medije. Ostalim danima mogu da ti banu i ovi i oni a ne moraju... </div>
+        <div class="card-buttons"><button class="action-btn" id="next1">NEXT</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pravila2-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <div class="card-text">Krajevi igre su u slucajevima: Korupcija 0; Cacad -100; Cacad +100; Blokaderi +100; Blokaderi -100; Uhvacen u dzeparenju; isteklo 100 dana; skupio milijardu; prokockao...</div>
+        <div class="card-buttons"><button class="action-btn" id="next2">NEXT</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pravila3-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left">
+        <div class="card-text">Cheat ti i ne treba ali fora je da pomognes nekom u stvarnom zivotu i poslacu ti sifru da ti bude lakse <3 </div>
+        <div class="card-buttons"><button class="action-btn" id="ok3">OK</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CACAD MINUS MODAL -->
+  <div id="cacad-minus-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/krajcacadminus.jpg" alt="Kraj Cacad -100"></div>
+      <div class="card-right">
+        <div class="card-text">Moral cacadi je pao na nulu. <br>Niko nije dosao na blokadu protiv blokada, satori takodje prazni. <br>Ucenjeni kriminalci su pobegli da rade negde preko. 
+          <br>Ostao si sam, jer mama je pobegla sa sinom kog vise voli. <br> Valjas se pijan po Goranovim kockama, narod te preskace. </div>
+        <div class="card-buttons">
+          <button class="action-btn" id="share-minus">PODELI</button>
+          <button class="exit-btn" id="restart-minus">RESTART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CACAD PLUS MODAL -->
+  <div id="cacad-plus-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/krajcacadplus.jpg" alt="Kraj Cacad +100"></div>
+      <div class="card-right">
+        <div class="card-text">Cacad je istripovala da je jaca od tebe. Moral im skocio do neba! <br>I bili su u pravu! <br>Donekle... <br>Svi su propevali u zamenu za imunitet, al' dobili su kurac. 
+          <br>No, o tome cemo drugi put... <br> </div>
+        <div class="card-buttons">
+          <button class="action-btn" id="share-plus">PODELI</button>
+          <button class="exit-btn" id="restart-plus">RESTART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOKADERI MINUS MODAL -->
+  <div id="blok-minus-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/krajblokminus.jpg" alt="Kraj Blokaderi -100"></div>
+      <div class="card-right">
+        <div class="card-text">Blokaderima je skroz pao moral. <br>Prestali su da blokiraju jer vise nemaju koga. <br>Narod je emigrirao kojekude jer ovde ne moze da se zivi. </div>
+        <div class="card-buttons">
+          <button class="action-btn" id="share-blok-minus">PODELI</button>
+          <button class="exit-btn" id="restart-blok-minus">RESTART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOKADERI PLUS MODAL -->
+  <div id="blok-plus-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/krajblokplus.jpg" alt="Kraj Blokaderi +100"></div>
+      <div class="card-right">
+        <div class="card-text">
+  Blokaderima je moral skocio do neba!<br>
+  Uzeli su govnjive motke i blokirali aerodrome i puteve.<br>
+  Niko nije postedjen.<br>
+  Proces restitucije je bio toliko detaljan da je i konju vracena glava.<br>
+  Tvoja mama vise voli tvog brata nego tebe.<br>
+  Ostatak zivota ces provesti u celiji sa Jecom. Bez sminke.
+</div>
+        <div class="card-buttons">
+          <button class="action-btn" id="share-blok-plus">PODELI</button>
+          <button class="exit-btn" id="restart-blok-plus">RESTART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MORAL MODAL -->
+  <div id="moral-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/krajmoral.jpg" alt="Kraj moral"></div>
+      <div class="card-right">
+        <div class="card-text">Mekan si kao tvoja sisa. <br>Ubio te rak dojke. </div>
+        <div class="card-buttons">
+          <button class="action-btn" id="share-moral">PODELI</button>
+          <button class="exit-btn" id="restart-moral">RESTART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOPOVE NE KRADI MODAL -->
+<div id="lopov-modal" class="hidden">
+  <div class="card-content" style="background-color: rgb(60,0,0); color: white; text-align: center; padding: 20px; border: 3px solid red;">
+    <div class="card-text" style="font-size: 22px; font-weight: bold;">LOPOVE NE KRADI</div>
+    <div class="card-buttons" style="margin-top: 15px;">
+      <button class="exit-btn" id="lopov-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+  <!-- MMF NOĆNI MODAL -->
+  <div id="mmf-night-modal" class="hidden">
+    <div class="card-content">
+      <div class="card-left"><img src="assets/nocmmf.jpg" alt="MMF Noć"></div>
+      <div class="card-right">
+        <div class="card-text">Idiote, ko jos odobrava kredite nocu!? <br>Dodji ujutru.</be></div>
+        <div class="card-buttons"><button class="exit-btn" id="mmf-night-exit">IZLAZ</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOĆNI DOGAĐAJ MODAL -->
+<div id="night-event-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left"><img id="night-event-img" src="" alt=""></div>
+    <div class="card-right">
+      <div class="card-text" id="night-event-text">Tekst događaja</div>
+      <div class="card-buttons">
+        <button class="exit-btn" id="night-event-exit">IZLAZ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KONJ PODMAZAN MODAL -->
+<div id="konj-podmazan-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left"><img src="assets/kojbiopodmazan.jpg" alt=""></div>
+    <div class="card-right">
+      <div class="card-text">Konj je bio podmazan! Blokaderi -15, Moral +15</div>
+      <div class="card-buttons">
+        <button class="exit-btn" id="konj-podmazan-exit">IZLAZ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME OVER – KRADJA -->
+<div id="kradja-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left">
+      <img src="assets/kradja.jpg" alt="Game Over Uhvaćen si!">
+    </div>
+    <div class="card-right">
+      <div class="card-text">Game Over – Uhvaćen si! <br>E jesi maler stvarno, ispitali su ti poreklo imovine, jbg. <br>A i ti brate nasao od koga da krades... <br>Svi ste pali, dzaba operisete slepa creva.</div>
+      <div class="card-buttons">
+        <button class="action-btn" id="share-kradja">PODELI</button>
+        <button class="exit-btn" id="restart-kradja">RESTART</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME OVER – KOCKANJE -->
+<div id="kockanje-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left">
+      <img src="assets/kar8.jpg" alt="Kockanje – Game Over">
+    </div>
+    <div class="card-right">
+      <div class="card-text">
+        Zašto si to uradio?<br>
+        Ako ti je potrebna pomoć, klikni
+        <a href="https://www.drajzerova.org.rs/content/dnevna-bolnica-za-nehemijske-zavisnosti-sa-rehabilitacionim-grupama" 
+           target="_blank" style="color:#0af; text-decoration:underline; font-weight:bold;">OVDE</a>.
+      </div>
+      <div class="card-buttons">
+        <button class="action-btn" id="share-kockanje">PODELI</button>
+        <button class="exit-btn" id="restart-kockanje">RESTART</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SENDVIČARIJUM MODAL (KARTICA 12) -->
+<div id="sendvicarijum-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left">
+      <img src="assets/kar12.jpg" alt="Sendvicarijum">
+    </div>
+    <div class="card-right">
+      <div class="card-text" id="sendvicarijum-text">
+        <b>Sendvicarijum</b><br><br>
+        <span id="sendvici-status" style="color:#f00;font-weight:bold;">Sendviči nisu napravljeni</span>
+      </div>
+      <div class="card-buttons" id="sendvici-buttons">
+        <button class="action-btn" id="napravi-sendvice">NAPRAVI SENDVICE 5M</button>
+        <button class="exit-btn" id="sendvici-exit">IZLAZ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REKET MODAL (KARTICA 2) -->
+<div id="reket-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left">
+      <img src="assets/kar2.jpg" alt="Reketiranje grada">
+    </div>
+    <div class="card-right">
+      <div class="card-text" id="reket-text">
+        Pokupi reket dok te tvoji nisu pokrali.
+      </div>
+      <div class="card-buttons">
+        <button class="action-btn" id="reket-angazuj">ANGAZUJ JOŠ</button>
+        <button class="action-btn" id="reket-pokupi">POKUPI</button>
+        <button class="exit-btn" id="reket-exit">IZLAZ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KONJ NIJE PODMAZAN MODAL -->
+<div id="konj-nije-podmazan-modal" class="hidden">
+  <div class="card-content">
+    <div class="card-left"><img src="assets/konjnijebipodmazan.jpg" alt=""></div>
+    <div class="card-right">
+      <div class="card-text">Konj nije bio podmazan! Ćaćad -20, Blokaderi +10, Moral -10</div>
+      <div class="card-buttons">
+        <button class="exit-btn" id="konj-nije-podmazan-exit">IZLAZ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Ako overlay već postoji, ne dodajemo ga
+  if (document.getElementById('fullscreen-overlay')) return;
+
+  // Kreiramo overlay div
+  const overlay = document.createElement('div');
+  overlay.id = 'fullscreen-overlay';
+  overlay.style.cssText = `
+    position:fixed;inset:0;display:flex;justify-content:center;align-items:center;
+    background:rgba(0,0,0,0.9);z-index:99999;color:white;font-family:sans-serif;
+  `;
+
+  overlay.innerHTML = `
+    <div style="background:#111;padding:20px;border-radius:10px;text-align:center;max-width:90vw;">
+      <h2>Pokreni igru u punom ekranu</h2>
+      <p>Igra radi najbolje u landscape i fullscreen režimu.</p>
+      <button id="fs-ok" style="padding:10px 20px;margin-top:10px;">POKRENI</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const btnOk = document.getElementById('fs-ok');
+
+  btnOk.addEventListener('click', function() {
+    // Pokušaj fullscreen
+    const docEl = document.documentElement;
+    if (docEl.requestFullscreen) docEl.requestFullscreen().catch(()=>{});
+    else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen().catch(()=>{});
+    else if (docEl.msRequestFullscreen) docEl.msRequestFullscreen().catch(()=>{});
+
+    // Pokušaj landscape lock
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(()=>{});
+    }
+
+    // Ukloni overlay
+    overlay.remove();
+
+    // Pozovi start funkciju ako postoji
+    if (typeof startGame === 'function') startGame();
+    else if (typeof initGame === 'function') initGame();
+  });
+})();
+</script>
+
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
