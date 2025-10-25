@@ -931,25 +931,39 @@ if (imgName === "kar7.jpg") {
   return;
 }
 
-    // --- KARTICA 1 – DŽEPARENJE SANJE 97-98-99 ---
+ // --- KARTICA 1 – DŽEPARENJE SANJE 97-98-99 ---
 if (imgName === "kar1.jpg") {
+  const cardModal = document.getElementById("card-modal");
+  const modalImg = cardModal.querySelector("img");
   modalImg.src = `assets/${imgName}`;
   cardModal.classList.remove("hidden");
 
   const cardText = document.getElementById("card-text");
   cardText.innerHTML = `<b>Dzeparenje</b><br><br>
-    Uvalio si se u EU na sastanak, nema stolica za tebe. <br> Iz revolta mozes pokusati da maznes:<br>
-    Novcanik 99% sanse za 5M (Korupocija+1) <br> Torbicu 98% sanse za 10M (Korupcija+2) <br> Papire 97% sanse za 25M (korupcija+3) <br> Ako te navataju kraj je!`;
+    Uvalio si se u EU na sastanak, nema stolica za tebe.<br>
+    Iz revolta mozes pokusati da maznes:<br>
+    Novcanik 99% sanse za 5M (Korupocija+1)<br>
+    Torbicu 98% sanse za 10M (Korupcija+2)<br>
+    Papire 97% sanse za 25M (Korupcija+3)<br>
+    Ako te navataju kraj je!`;
 
   const opcije = [
     { naziv: "Novcanik",  iznos: 5000000,  sansa: 0.99, moralPlus: 1 },
-    { naziv: "Torbica", iznos: 10000000, sansa: 0.98, moralPlus: 2 },
-    { naziv: "Papiri", iznos: 25000000, sansa: 0.97, moralPlus: 3 }
+    { naziv: "Torbica",   iznos:10000000, sansa: 0.98, moralPlus: 2 },
+    { naziv: "Papiri",    iznos:25000000, sansa: 0.97, moralPlus: 3 }
   ];
 
+  // reset dugmadi i ukloni stare evente
   const buttons = cardModal.querySelectorAll(".action-btn");
-  buttons.forEach((btn, i) => {
-    const o = opcije[i];
+  buttons.forEach(btn => {
+    btn.style.display = "none";
+    btn.onclick = null;
+  });
+
+  // postavi dugmad po redu odozgo
+  opcije.forEach((o, i) => {
+    const btn = buttons[i];
+    if (!btn) return;
     btn.textContent = o.naziv;
     btn.style.display = "inline-block";
     btn.onclick = () => {
@@ -971,6 +985,7 @@ if (imgName === "kar1.jpg") {
 
   return;
 }
+
 
 // --- KARTICA 8 – KOCKAJ SE ---
 if (imgName === "kar8.jpg") {
