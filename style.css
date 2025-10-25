@@ -300,13 +300,12 @@ body {
   height: 100%;
   background-color: rgba(0,0,0,0.95);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;   /* sadržaj odozgo nadole */
+  align-items: center;      /* centriranje horizontalno */
   padding: 10px;
   box-sizing: border-box;
   z-index: 1200;
-  overflow: hidden;       /* sprečava da dugmad iskaču */
+  overflow-y: auto;         /* scroll ako tekst dug */
 }
 
 #cheat-modal.hidden { 
@@ -320,40 +319,47 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  flex-grow: 1;           /* zauzima sav prostor */
-  overflow-y: auto;       /* scroll za duži tekst */
+  gap: 5px;                 /* razmak između elemenata */
 }
 
 .cheat-text {
-  font-size: 16px;        /* manji font */
-  margin-bottom: 10px;
-  text-align: center;
+  font-size: 12px;           /* manji font */
+  margin-bottom: 5px;
+  text-align: left;
+  width: 100%;
 }
 
 #cheat-input {
-  width: 90%;
+  width: 100%;
   padding: 6px;
   border-radius: 4px;
   border: none;
-  margin-bottom: 10px;
-  font-size: 14px;        /* manji font */
+  margin-bottom: 5px;
+  font-size: 12px;
 }
 
 /* dugmad */
+.cheat-buttons {
+  display: flex;
+  flex-wrap: wrap;           /* prebacuje u novi red ako ne stane */
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+}
+
 .cheat-green, .cheat-red, .cheat-exit {
+  font-size: 12px;
+  padding: 6px 10px;         /* manja visina */
   border-radius: 4px;
-  padding: 6px 10px;      /* manja visina */
-  margin: 5px;
-  cursor: pointer;
-  font-size: 14px;        /* manji font */
   font-weight: bold;
+  cursor: pointer;
 }
 
 .cheat-green { background-color: #070; color: #fff; }
 .cheat-red   { background-color: #900; color: #fff; }
 .cheat-exit  { background-color: #555; color: #fff; }
 
-/* cheat popup */
+/* cheat popup unutar modala */
 #cheat-popup {
   position: absolute;
   top: 40%;
@@ -365,7 +371,7 @@ body {
   border: 1px solid #fff;
   border-radius: 8px;
   color: #fff;
-  font-size: 16px;       /* smanjen font */
+  font-size: 12px;
   z-index: 2000;
 }
 
@@ -377,10 +383,11 @@ body {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 6px 10px;      /* manja visina */
+  padding: 6px 10px;
   cursor: pointer;
-  font-size: 14px;        /* manji font */
+  font-size: 12px;
 }
+
 
 
 /* --- EXIT MODAL --- */
