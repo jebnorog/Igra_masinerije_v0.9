@@ -256,9 +256,9 @@ body {
 
 .card-text {
   flex-grow: 1;
-  font-size: 20px;
-  line-height: 1.4em;
-  margin-bottom: 20px;
+  font-size: 16px;   /* manji font */
+  line-height: 1.3em;
+  margin-bottom: 10px;
   overflow-wrap: break-word;
 }
 
@@ -271,14 +271,13 @@ body {
 
 .action-btn, .exit-btn {
   border: none;
-  padding: 10px;
+  padding: 6px 10px; /* manje visine i širine */
+  font-size: 14px;   /* smanjen font */
   cursor: pointer;
   border-radius: 4px;
   color: #fff;
   font-weight: bold;
 }
-.action-btn { background-color: #0a0; }
-.exit-btn { background-color: #555; }
 
 /* --- BLOKADERI MODALI (posebna nijansa) --- */
 #blok-minus-modal .card-right,
@@ -636,6 +635,47 @@ body {
   #jednorog {
     display: none !important;
   }
+
+
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+  height: 100%;          /* važno da fleks radi na punu visinu */
+  overflow: hidden;       /* skrati višak sadržaja */
+}
+
+.card-text {
+  flex-grow: 1;           /* zauzima sav raspoloživi prostor */
+  font-size: 16px;
+  line-height: 1.3em;
+  overflow-y: auto;       /* omogućava scroll kad tekst ne stane */
+  margin-bottom: 10px;
+}
+
+.card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;               /* razmak između dugmadi */
+  margin-top: auto;        /* dugmad uvek na dnu */
+}
+
+.action-btn, .exit-btn {
+  padding: 6px 10px;      /* manja visina dugmadi */
+  font-size: 14px;         /* manji font */
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.action-btn { background-color: #0a0; }
+.exit-btn { background-color: #555; }
+
+
+
 
   /* === Dugmad Cheat i Izlaz === */
   #cheat-btn,
